@@ -1,5 +1,5 @@
-[![en](https://img.shields.io/badge/lang-en-green.svg)]()
-[![ru](https://img.shields.io/badge/lang-ru-blue.svg)]()
+[![en](https://img.shields.io/badge/lang-en-green.svg)](https://github.com/YoungMYN/ranking-comparators/blob/main/README.md)
+[![ru](https://img.shields.io/badge/lang-ru-blue.svg)](https://github.com/YoungMYN/ranking-comparators/blob/main/README.ru.md)
 # ranking-comparators
 A few templates for compiling rating lists of objects, with different parameters storage structures
 
