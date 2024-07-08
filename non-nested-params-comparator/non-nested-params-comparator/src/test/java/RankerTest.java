@@ -353,6 +353,44 @@ public class RankerTest {
         }
     }
 
+    @Test
+    public void differentParamsSetRankingTest() {
+        Unit unit1 = new Unit<>("unit1");
+
+
+        Map<ParamsName, Comparable> params1 = new HashMap<>();
+        params1.put(ParamsName.PARAM1, 1);
+        params1.put(ParamsName.PARAM2, 2);
+
+        unit1.setParams(params1);
+
+//----------------------------------------------------
+        Unit unit2 = new Unit("unit2");
+
+        Map<ParamsName, Comparable> params2 = new HashMap<>();
+        params2.put(ParamsName.PARAM3, 3);
+
+        unit2.setParams(params2);
+//----------------------------------------------------
+        Unit unit3 = new Unit("unit3");
+
+        Map<ParamsName, Comparable> params3 = new HashMap<>();
+        params3.put(ParamsName.PARAM4, 4);
+        params3.put(ParamsName.PARAM5, 5);
+
+        unit3.setParams(params3);
+//----------------------------------------------------
+        List<Unit> units= new ArrayList<>();
+        units.add(unit1);
+        units.add(unit2);
+        units.add(unit3);
+
+        //iteration:
+        Iterator<String> rankIter = Ranker.printAndReturnRank(units).iterator();
+
+        Assertions.assertEquals(rankIter.next(),unit3+"\t"+unit2+"\t"+unit1);
+    }
+
 
 }
 
