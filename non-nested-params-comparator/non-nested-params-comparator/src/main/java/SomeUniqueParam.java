@@ -1,4 +1,3 @@
-import lombok.Setter;
 
 public class SomeUniqueParam implements Comparable<SomeUniqueParam>{
     private final int variable;
