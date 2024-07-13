@@ -1,5 +1,5 @@
 import exceptions.ElementConsistentException;
-import  org.junit.jupiter.api.*;
+import org.junit.jupiter.api.*;
 
 import java.util.*;
 
