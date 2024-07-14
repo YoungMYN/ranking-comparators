@@ -1,4 +1,3 @@
-import interfaces.MultiCalculable;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
