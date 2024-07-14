@@ -20,12 +20,7 @@ public class Person implements MultiCalculable {
 
     @Override
     public BigDecimal calculate(@NonNull CalculatingStrategy strategy, @NonNull Params.CalculatingParam param) {
-        return switch (strategy){
-            case SUM -> Algorithm.sumParameters(this, param);
-            case AVERAGE -> Algorithm.avgParam(this, param);
-            case MIN -> Algorithm.minParam(this, param);
-            case MAX -> Algorithm.maxParam(this, param);
-        };
+        return Algorithm.executeAlgorithmWithPerson(strategy,this,param);
     }
 
     public void addChild(Person child){

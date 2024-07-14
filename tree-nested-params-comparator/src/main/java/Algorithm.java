@@ -2,6 +2,16 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Algorithm {
+
+    public static BigDecimal executeAlgorithmWithPerson(CalculatingStrategy algorithm, Person person, Params.CalculatingParam param){
+        return switch (algorithm){
+            case SUM -> sumParameters(person, param);
+            case AVERAGE -> avgParam(person, param);
+            case MIN -> minParam(person, param);
+            case MAX -> maxParam(person, param);
+        };
+    }
+
     public static BigDecimal sumParameters(Person person, Params.CalculatingParam param ){
         BigDecimal sum = BigDecimal.valueOf(0);
 
