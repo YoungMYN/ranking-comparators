@@ -1,15 +1,13 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.List;
 
 public class Algorithm {
     public static BigDecimal sumParameters(Person person, Params.CalculatingParam param ){
-        /* https://stackoverflow.com/questions/16216248/convert-java-number-to-bigdecimal-best-way */
-        //TODO check for Double for Nan and Infinity or try catch
+        BigDecimal sum = BigDecimal.valueOf(0);
 
         //add the value of the parameter for the person himself
-        BigDecimal sum = BigDecimal.valueOf(0);
-        sum = sum.add(new BigDecimal(person.getParams().getParam(param).toString()));
+        BigDecimal personsValueOfParam = validateAndCreateBigDecimal(person.getParams().getParam(param));
+        sum = sum.add(personsValueOfParam);
 
         //add the value of the parameter for each child(recursion)
         for (Person child: person.getChildren()) {
@@ -25,17 +23,48 @@ public class Algorithm {
     }
 
     public static BigDecimal minParam(Person person, Params.CalculatingParam param){
-        return null;//TODO implement
+        BigDecimal min = validateAndCreateBigDecimal(person.getParams().getParam(param));
+
+        for (Person child: person.getChildren()) {
+            BigDecimal childMinValue = child.calculate(CalculatingStrategy.MIN, param);
+
+            if(childMinValue.compareTo(min)<0){
+                min = childMinValue;
+            }
+        }
+        return min;
     }
 
     public static BigDecimal maxParam(Person person, Params.CalculatingParam param){
-        return null;//TODO implement
+        BigDecimal max = validateAndCreateBigDecimal(person.getParams().getParam(param));
+
+        for (Person child: person.getChildren()) {
+            BigDecimal childMaxValue = child.calculate(CalculatingStrategy.MAX, param);
+
+            if(childMaxValue.compareTo(max)>0){
+                max = childMaxValue;
+            }
+        }
+        return max;
     }
 
     public static long countChildren(Person person){
         return person.countChildren();
     }
 
+    /** https://stackoverflow.com/questions/16216248/convert-java-number-to-bigdecimal-best-way*/
+    public static BigDecimal validateAndCreateBigDecimal(Number number){
+        String numberAsStr = number.toString();
+        validateStringValueOfNumber(numberAsStr);
+
+        return new BigDecimal(numberAsStr);
+    }
+
+    public static void validateStringValueOfNumber(String numberAsStr){
+        if(numberAsStr.equals("Nan") || numberAsStr.contains("Infinity") ){
+            throw new IllegalArgumentException("The string contains a non-numeric value and cannot be used for further operations");
+        }
+    }
  /*
     public static long countAliveChildren(Person person){
         return 0;

@@ -26,7 +26,7 @@ public class Params {
     /**
      * Stores the names of a subset of parameters of the Params class - only those over which numerical calculations can be made
      */
-    enum CalculatingParam{
+    public enum CalculatingParam{
         AGE,
         HEIGHT,
         WEIGHT

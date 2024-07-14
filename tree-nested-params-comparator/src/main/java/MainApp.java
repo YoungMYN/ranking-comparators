@@ -1,5 +1,4 @@
 import java.math.BigDecimal;
-import java.util.List;
 
 public class MainApp {
     public static void main(String[] args) {
@@ -21,6 +20,10 @@ public class MainApp {
         son2.addChild(grandson3);
 
         System.out.println(grand.calculate(CalculatingStrategy.SUM, Params.CalculatingParam.AGE));//waiting for 280
+        System.out.println(grand.calculate(CalculatingStrategy.AVERAGE, Params.CalculatingParam.AGE));//waiting for 47
+        System.out.println(grand.calculate(CalculatingStrategy.MIN, Params.CalculatingParam.AGE));//waiting for 20
+        System.out.println(grand.calculate(CalculatingStrategy.MAX, Params.CalculatingParam.AGE));//waiting for 80
+        //TODO generate testdata https://github.com/DiUS/java-faker
     }
 
 
