@@ -20,7 +20,7 @@ public class Person implements MultiCalculable {
 
     @Override
     public BigDecimal calculate(@NonNull CalculatingStrategy strategy, @NonNull Params.CalculatingParam param) {
-        return Algorithm.executeAlgorithmWithPerson(strategy,this,param);
+        return Algorithms.executeAlgorithmWithPerson(strategy,this,param);
     }
 
     public void addChild(Person child){

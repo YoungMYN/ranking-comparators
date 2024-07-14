@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Algorithm {
+public class Algorithms {
 
     public static BigDecimal executeAlgorithmWithPerson(CalculatingStrategy algorithm, Person person, Params.CalculatingParam param){
         return switch (algorithm){
