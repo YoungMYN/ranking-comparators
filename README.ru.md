@@ -1,4 +1,4 @@
-[![en](https://img.shields.io/badge/lang-en-green.svg)](https://github.com/YoungMYN/ranking-comparators/blob/main/README.md)
+[![en](https://img.shields.io/badge/lang-en-green.svg)](README.md)
 # ranking-comparators
 Несколько шаблонов для составления рейтинговых списков объектов с различными структурами хранения параметров.
 
