@@ -23,7 +23,6 @@ public class Main {
         Map<ParamsName, Comparable> params2 = new HashMap<>();
         params2.put(ParamsName.PARAM1, 2);
         params2.put(ParamsName.PARAM2, 10);
-        params2.put(null, null);
 
         unit2.setParams(params2);
 
@@ -32,6 +31,6 @@ public class Main {
         units.add(unit2);
 
         //result:
-        Ranker.printAndReturnRank(units);
+        new NonNestedRanker().printAndReturnRank(units);
     }
 }

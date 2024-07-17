@@ -25,7 +25,52 @@
             <artifactId>lombok</artifactId>
             <version>1.18.32</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>general/src/java</source>
+                                <source>non-nested-params-comparator/src/main/java</source>
+                                <source>tree-nested-params-comparator/src/main/java</source>
+                                <source>tree-nested-params-comparator/src/main/java/interfaces</source>
+                                <source>tree-nested-params-comparator/src/main/java/nodes</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>non-nested-params-comparator/src/test/java</source>
+                                <source>tree-nested-params-comparator/src/test/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <!--
         v1.0.0 - non-nested-params-comparator added
 

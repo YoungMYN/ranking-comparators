@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Ranker {
-    private static boolean consistentMode = false;
+public class NonNestedRanker implements Ranker<Unit> {
+    private boolean consistentMode = false;
 
     /**
      * This method creates a ranking list of the passed objects and prints it to the console. It returns a list of strings identical to the printed one.
@@ -16,7 +16,7 @@ public class Ranker {
          * The elements with the highest values of the priority parameters are represented at the beginning of the list, starting from the zero element.
          * If several elements are identical, their string representations will be separated by a tab and form one element of the list.
      */
-    public static List<String> printAndReturnRank(List<Unit> units) throws NullPointerException
+    public List<String> printAndReturnRank(List<Unit> units) throws NullPointerException
     {
         if(units == null) throw new NullPointerException("the input is null instead of List");
         if(consistentMode) checkConsistence(units);
@@ -48,15 +48,15 @@ public class Ranker {
 
     /**
      * This method sets or removes the consistency check mode for the compared objects.
-     * In consistency check mode, before comparing elements (in the method {@link Ranker#printAndReturnRank(List)}), a comparison of all stored parameters will be performed.
-     * And if there is at least one different object, an exception {@link ElementConsistentException} will be thrown in the validation method {@link Ranker#checkConsistence(List)}.
+     * In consistency check mode, before comparing elements (in the method {@link NonNestedRanker#printAndReturnRank(List)}), a comparison of all stored parameters will be performed.
+     * And if there is at least one different object, an exception {@link ElementConsistentException} will be thrown in the validation method {@link NonNestedRanker#checkConsistence(List)}.
      * @param consistent the flag for setting the consistency check mode.
      */
-    public static void setConsistent(boolean consistent){
+    public void setConsistent(boolean consistent){
         consistentMode = consistent;
     }
 
-    private static void checkConsistence(List<Unit> in) throws ElementConsistentException
+    private void checkConsistence(List<Unit> in) throws ElementConsistentException
     {
         for (int i = 0; i < in.size(); i++){
             if(i+1 == in.size()) return;

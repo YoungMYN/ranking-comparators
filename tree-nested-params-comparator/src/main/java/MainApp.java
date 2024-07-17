@@ -1,7 +1,12 @@
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainApp {
     public static void main(String[] args) {
+        //TODO Create ASC/DESC mode
+        //TODO write Readme.md and javadoc
+
         Person grand = new Person(new Params("John",80, 180, BigDecimal.valueOf(75),true));
 
         Person son1 = new Person(new Params("Andrew",55, 190, BigDecimal.valueOf(90),true));
@@ -23,6 +28,15 @@ public class MainApp {
         System.out.println(grand.calculate(CalculatingStrategy.AVERAGE, Params.CalculatingParam.AGE));//waiting for 47
         System.out.println(grand.calculate(CalculatingStrategy.MIN, Params.CalculatingParam.AGE));//waiting for 20
         System.out.println(grand.calculate(CalculatingStrategy.MAX, Params.CalculatingParam.AGE));//waiting for 80
+
+        System.out.println(son1.calculate(CalculatingStrategy.MAX, Params.CalculatingParam.AGE));
+        System.out.println(son2.calculate(CalculatingStrategy.MAX, Params.CalculatingParam.AGE));
+        System.out.println("-----------");
+        List<Person> persons = new ArrayList<>();
+        persons.add(son1);
+        persons.add(son2);
+        new TreeRanker().printAndReturnRank(persons);
+
         //TODO generate testdata https://github.com/DiUS/java-faker
     }
 

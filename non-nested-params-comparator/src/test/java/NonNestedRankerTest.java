@@ -3,7 +3,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.*;
 
-public class RankerTest {
+public class NonNestedRankerTest {
     @BeforeAll
     public static void setUp() {
         Priority.paramsPriority.put(10,ParamsName.PARAM1);
@@ -66,7 +66,7 @@ public class RankerTest {
         units.add(unit4);
 
         //iteration:
-        Iterator<String> rankIter = Ranker.printAndReturnRank(units).iterator();
+        Iterator<String> rankIter = new NonNestedRanker().printAndReturnRank(units).iterator();
 
         Assertions.assertEquals(rankIter.next(),unit2.toString());
         Assertions.assertEquals(rankIter.next(),unit1.toString());
@@ -126,7 +126,7 @@ public class RankerTest {
         units.add(unit4);
 
         //iteration:
-        Iterator<String> rankIter = Ranker.printAndReturnRank(units).iterator();
+        Iterator<String> rankIter = new NonNestedRanker().printAndReturnRank(units).iterator();
 
         Assertions.assertEquals(rankIter.next(),unit2 + "\t" + unit1);
         Assertions.assertEquals(rankIter.next(),unit3.toString());
@@ -177,7 +177,7 @@ public class RankerTest {
         units.add(unit4);
 
         //iteration:
-        Iterator<String> rankIter = Ranker.printAndReturnRank(units).iterator();
+        Iterator<String> rankIter = new NonNestedRanker().printAndReturnRank(units).iterator();
 
         Assertions.assertEquals(rankIter.next(),unit4+ "\t" + unit3+ "\t" + unit2 + "\t" + unit1);
 
@@ -229,7 +229,7 @@ public class RankerTest {
         units.add(unit4);
 
         //iteration:
-        Iterator<String> rankIter = Ranker.printAndReturnRank(units).iterator();
+        Iterator<String> rankIter = new NonNestedRanker().printAndReturnRank(units).iterator();
 
         Assertions.assertEquals(rankIter.next(),unit4.toString());
         Assertions.assertEquals(rankIter.next(),unit3.toString());
@@ -281,20 +281,21 @@ public class RankerTest {
         units.add(unit3);
         units.add(unit4);
 
+        NonNestedRanker ranker = new NonNestedRanker();
         //checking the correct operation of the validation mod
         try {
-            Ranker.setConsistent(true);
-            Ranker.printAndReturnRank(units);
+            ranker.setConsistent(true);
+            ranker.printAndReturnRank(units);
             Assertions.fail();
         }
         catch (ElementConsistentException e){}
 
         //check for setter of mode
         try {
-            Ranker.setConsistent(false);
+            ranker.setConsistent(false);
 
             //iteration:
-            Iterator<String> rankIter = Ranker.printAndReturnRank(units).iterator();
+            Iterator<String> rankIter = ranker.printAndReturnRank(units).iterator();
 
             Assertions.assertEquals(rankIter.next(),unit4.toString());
             Assertions.assertEquals(rankIter.next(),unit3.toString());
@@ -345,7 +346,7 @@ public class RankerTest {
         }
 
         try {
-            Ranker.printAndReturnRank(null);
+            new NonNestedRanker().printAndReturnRank(null);
 
             Assertions.fail(); //null pointer was not thrown
         }catch (NullPointerException e){
@@ -386,7 +387,7 @@ public class RankerTest {
         units.add(unit3);
 
         //iteration:
-        Iterator<String> rankIter = Ranker.printAndReturnRank(units).iterator();
+        Iterator<String> rankIter = new NonNestedRanker().printAndReturnRank(units).iterator();
 
         Assertions.assertEquals(rankIter.next(),unit3+"\t"+unit2+"\t"+unit1);
     }
