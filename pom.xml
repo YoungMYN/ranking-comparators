@@ -25,11 +25,11 @@
             <artifactId>lombok</artifactId>
             <version>1.18.32</version>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
-        </dependency>
+        </dependency-->
     </dependencies>
     <build>
         <plugins>
@@ -49,8 +49,6 @@
                                 <source>general/src/java</source>
                                 <source>non-nested-params-comparator/src/main/java</source>
                                 <source>tree-nested-params-comparator/src/main/java</source>
-                                <source>tree-nested-params-comparator/src/main/java/interfaces</source>
-                                <source>tree-nested-params-comparator/src/main/java/nodes</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -71,9 +69,17 @@
             </plugin>
         </plugins>
     </build>
-    <!--
+    <description>
         v1.0.0 - non-nested-params-comparator added
 
         v1.1.0 - tree-nested-params-comparator added
-    -->
+
+        v2.0.1 - global refactor:
+                    the original file directories have been replaced with packages
+                    one more source package for common classes and abstractions has been created
+                    several top-level abstractions have been added for all ranking classes
+                    override of several methods of the parent class in the LastDescendant class have been removed
+                    The general code has been changed and moved to the class AbstractRender.java
+
+    </description>
 </project>
