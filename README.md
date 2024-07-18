@@ -3,7 +3,8 @@
 # ranking-comparators
 A few templates for compiling rating lists of objects, with different parameters storage structures
 
-### non-nested-params-comparator
+### non-nested-params-comparator  
+___
 — this is a fairly abstract implementation of the system
 that makes up the ranked lists of incoming objects represented by the Unit class.
 
@@ -34,5 +35,32 @@ If this flag is not set, the comparator will compare objects based on the availa
 **Note 1**:In this abstract, it is not possible to safely use the Unit class at the compilation level, so object initializations occur using Raw Types.  
 If you want to avoid this, you need to be more specific.   
 I have researched this issue, you can find my discussion on [Stack Overflow](https://stackoverflow.com/questions/78711032)
+
+
+### tree-nested-params-comparator  
+___  
+— prototype of a system that compares objects with a high degree of tree nesting.
+
+Each Person object in this project, contains a field with its own parameters, represented by an object of class Params.
+
+Each class also has N number of children of the Person class, each with its own parameters (and children, and parameters, and so on ad infinitum).
+
+Let's assume that we don't know anything about the degree of nesting of the incoming object, and we want to compare it with another object, by some parameter (in my case, the assumption of the system is that the comparison can take place only by fields inherited from the Number class, i.e. numbers. You can change this logic for your tasks). The list of parameters that can be compared is represented by the enum CalculatingParam inside the Params class. This enum stores the names of those variables by which we can compare one Person with another.
+
+The class enumeration CalculatingStrategy provides some strategies by which it is possible to perform a calculation on any of the parameters whose name is listed in CalculatingParam.
+
+>For example, CalculatingParam MAX combined with CalculatingParam.AGE, when comparing two Persons, ranks higher the one that has the Person with the higher maximum age in its inheritance tree than the object it is being compared to.
+
+
+
+You can compare by average age in the tree, by total height among all children, by number of children, etc. The options are many and are limited only by your imagination.
+
+_*Important note*_, it is recommended to represent leaves on a tree inheritance structure (objects that are not the parent node for any other object) by objects of the LastDescendant class, because it implements the necessary behavior, when invoking invalid operations with a tree leaf, for example, when trying to assign references to “children” to such a node, an UnsupportedOperationException will be thrown.
+
+Also, such a class is convenient because you can implement tree leaf-specific behavior in it, and seamlessly manipulate the behavior of the object via polymorphism.
+
+>Each of my implementations of the Runker classes implements a generic Runker interface with a single method List<String> printAndReturnRank(List<T>); If you want, you can use this interface (as well as the AbstractRanker class with an implemented helper method for console output) for your own implementation.
+
+
 
 ###### *The source code of this project is written using the AI technology of [SBER]( http://www.sberbank.ru/) – developer assistant [GigaCode]( https://gigacode.ru/)*
