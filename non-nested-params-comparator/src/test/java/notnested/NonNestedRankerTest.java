@@ -2,6 +2,9 @@ package notnested;
 
 import java.util.*;
 
+import notnested.param.ParamsName;
+import notnested.param.Priority;
+import notnested.param.SomeUniqueParam;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

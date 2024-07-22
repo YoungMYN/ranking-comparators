@@ -5,15 +5,17 @@ import java.math.RoundingMode;
 
 import tree.nodes.Person;
 
+import static tree.enums.CalculatingStrategy.*;
+
 public class Algorithms {
 
-	public static BigDecimal executeAlgorithmWithPerson(CalculatingStrategy algorithm, Person person,
-			Params.CalculatingParam param) {
-		return switch (algorithm) {
-			case SUM -> sumParameters(person, param);
-			case AVERAGE -> avgParam(person, param);
-			case MIN -> minParam(person, param);
-			case MAX -> maxParam(person, param);
+	public static BigDecimal executeAlgorithmWithPerson(Person person,
+														ApplicableFunction function) {
+		return switch (function.getFunction()) {
+			case SUM -> sumParameters(person, function.getArgument());
+			case AVERAGE -> avgParam(person, function.getArgument());
+			case MIN -> minParam(person, function.getArgument());
+			case MAX -> maxParam(person, function.getArgument());
 		};
 	}
 
@@ -26,7 +28,7 @@ public class Algorithms {
 
 		// add the value of the parameter for each child(recursion)
 		for (Person child : person.getChildren()) {
-			sum = sum.add(child.calculate(CalculatingStrategy.SUM, param));
+			sum = sum.add(child.calculate(new ApplicableFunction(SUM, param)));
 		}
 		return sum;
 	}
@@ -39,7 +41,7 @@ public class Algorithms {
 		BigDecimal min = validateAndCreateBigDecimal(person.getParams().getParam(param));
 
 		for (Person child : person.getChildren()) {
-			BigDecimal childMinValue = child.calculate(CalculatingStrategy.MIN, param);
+			BigDecimal childMinValue = child.calculate(new ApplicableFunction(MIN, param));
 
 			if (childMinValue.compareTo(min) < 0) {
 				min = childMinValue;
@@ -52,7 +54,7 @@ public class Algorithms {
 		BigDecimal max = validateAndCreateBigDecimal(person.getParams().getParam(param));
 
 		for (Person child : person.getChildren()) {
-			BigDecimal childMaxValue = child.calculate(CalculatingStrategy.MAX, param);
+			BigDecimal childMaxValue = child.calculate(new ApplicableFunction(MAX, param));
 
 			if (childMaxValue.compareTo(max) > 0) {
 				max = childMaxValue;

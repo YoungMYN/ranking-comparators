@@ -1,4 +1,6 @@
-package tree;
+package tree.enums;
+
+import tree.Algorithms;
 
 public enum CalculatingStrategy {
 	/**

@@ -1,4 +1,4 @@
-package notnested;
+package notnested.param;
 
 public class SomeUniqueParam implements Comparable<SomeUniqueParam> {
 	private final int variable;

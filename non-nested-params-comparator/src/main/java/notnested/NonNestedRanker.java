@@ -4,12 +4,13 @@ import java.util.List;
 
 import general.AbstractRanker;
 import notnested.exceptions.ElementConsistentException;
+import tree.enums.SortMode;
 
 public class NonNestedRanker extends AbstractRanker<Unit> {
 	private boolean consistentMode = false;
 
 	/**
-	 * This method creates a ranking list of the passed objects and prints it to the
+	 * This method creates a sorted DESC ranking list of the passed objects and prints it to the
 	 * console. It returns a list of strings identical to the printed one.
 	 *
 	 * @param units
@@ -22,6 +23,25 @@ public class NonNestedRanker extends AbstractRanker<Unit> {
 	 *         element of the list.
 	 */
 	public List<String> printAndReturnRank(List<Unit> units) throws NullPointerException {
+		return printAndReturnRank(units, SortMode.DESC);
+	}
+
+	/**
+	 * This method creates a ranking list of the passed objects and prints it to the
+	 * console. It returns a list of strings identical to the printed one.
+	 *
+	 * @param units
+	 *            the list of Units to compile the rating.
+	 * @param sortingMode
+	 *            mode of sorting the rank (ASC/DESC).
+	 * @return a List of strings - string representations of objects of the Unit
+	 *         class. The elements with the highest values of the priority
+	 *         parameters are represented at the beginning of the list, starting
+	 *         from the zero element. If several elements are identical, their
+	 *         string representations will be separated by a tab and form one
+	 *         element of the list.
+	 */
+	public List<String> printAndReturnRank(List<Unit> units, SortMode sortingMode) throws NullPointerException {
 		if (units == null)
 			throw new NullPointerException("the input is null instead of List");
 		if (consistentMode)
@@ -29,7 +49,8 @@ public class NonNestedRanker extends AbstractRanker<Unit> {
 
 		List<String> result = createStringRankedList(units, (o1, o2) -> {
 			return o1.compareTo(o2);
-		});
+		}, sortingMode);
+
 		result.forEach(System.out::println);
 
 		return result;

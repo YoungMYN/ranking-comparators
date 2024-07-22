@@ -1,5 +1,7 @@
 package general;
 
+import tree.enums.SortMode;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,10 +20,9 @@ public abstract class AbstractRanker<T> implements Ranker<T> {
 	 *            The comparator to use for sorting.
 	 * @return A new list of strings, sorted by the comparator in descending order.
 	 */
-	public List<String> createStringRankedList(List<T> objects, Comparator<? super T> comparator) {
-
+	public List<String> createStringRankedList(List<T> objects, Comparator<? super T> comparator, SortMode sorting) {
 		objects.sort(comparator);
-		Collections.reverse(objects);
+		if(sorting == SortMode.DESC) Collections.reverse(objects);
 
 		List<String> result = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();

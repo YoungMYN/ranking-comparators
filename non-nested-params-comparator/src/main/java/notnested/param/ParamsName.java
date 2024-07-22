@@ -1,4 +1,4 @@
-package notnested;
+package notnested.param;
 
 /**
  * This class represents all potentially possible parameters (characteristics)

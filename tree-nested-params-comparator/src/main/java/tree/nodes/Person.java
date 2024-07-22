@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import tree.Algorithms;
-import tree.CalculatingStrategy;
+import tree.ApplicableFunction;
 import tree.Params;
 import tree.interfaces.MultiCalculable;
 
@@ -28,14 +28,12 @@ public class Person implements MultiCalculable {
 	 * The method delegates the execution of the calculation method to the
 	 * {@link Algorithms} class by passing the parameters of the calculation itself
 	 * further.
-	 * 
-	 * @param strategy
-	 * @param param
+	 *
 	 * @return the result of the algorithm execution in the {@link Algorithms} class
 	 */
 	@Override
-	public BigDecimal calculate(@NonNull CalculatingStrategy strategy, @NonNull Params.CalculatingParam param) {
-		return Algorithms.executeAlgorithmWithPerson(strategy, this, param);
+	public BigDecimal calculate(@NonNull ApplicableFunction function) {
+		return Algorithms.executeAlgorithmWithPerson(this, function);
 	}
 
 	public void addChild(Person child) {

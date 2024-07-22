@@ -3,6 +3,8 @@ package notnested;
 import java.util.Map;
 
 import lombok.Getter;
+import notnested.param.ParamsName;
+import notnested.param.Priority;
 
 public class Unit<V extends Comparable<? super V>> implements Comparable<Unit<V>> {
 	public final String name;

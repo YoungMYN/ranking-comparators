@@ -1,4 +1,4 @@
-package notnested;
+package notnested.param;
 
 import java.util.Collections;
 import java.util.TreeMap;

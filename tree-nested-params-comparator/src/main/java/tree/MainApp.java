@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import tree.enums.CalculatingStrategy;
 import tree.nodes.LastDescendant;
 import tree.nodes.Person;
 
 public class MainApp {
 	public static void main(String[] args) {
-		// TODO Create ASC/DESC mode
-		// TODO write Readme.md and javadoc
+		// TODO Create autotests for in non nested comparator ASC/DESC mode
 
 		Person grand = new Person(new Params("John", 80, 180, BigDecimal.valueOf(75), true));
 
@@ -29,13 +29,13 @@ public class MainApp {
 
 		son2.addChild(grandson3);
 
-		System.out.println(grand.calculate(CalculatingStrategy.SUM, Params.CalculatingParam.AGE));// waiting for 280
-		System.out.println(grand.calculate(CalculatingStrategy.AVERAGE, Params.CalculatingParam.AGE));// waiting for 47
-		System.out.println(grand.calculate(CalculatingStrategy.MIN, Params.CalculatingParam.AGE));// waiting for 20
-		System.out.println(grand.calculate(CalculatingStrategy.MAX, Params.CalculatingParam.AGE));// waiting for 80
+		System.out.println(grand.calculate(new ApplicableFunction(CalculatingStrategy.SUM, Params.CalculatingParam.AGE)));// waiting for 280
+		System.out.println(grand.calculate(new ApplicableFunction(CalculatingStrategy.AVERAGE, Params.CalculatingParam.AGE)));// waiting for 47
+		System.out.println(grand.calculate(new ApplicableFunction(CalculatingStrategy.MIN, Params.CalculatingParam.AGE)));// waiting for 20
+		System.out.println(grand.calculate(new ApplicableFunction(CalculatingStrategy.MAX, Params.CalculatingParam.AGE)));// waiting for 80
 
-		System.out.println(son1.calculate(CalculatingStrategy.MAX, Params.CalculatingParam.AGE));
-		System.out.println(son2.calculate(CalculatingStrategy.MAX, Params.CalculatingParam.AGE));
+		System.out.println(son1.calculate(new ApplicableFunction(CalculatingStrategy.MAX, Params.CalculatingParam.AGE)));
+		System.out.println(son2.calculate(new ApplicableFunction(CalculatingStrategy.MAX, Params.CalculatingParam.AGE)));
 		System.out.println("-----------");
 		List<Person> persons = new ArrayList<>();
 		persons.add(son1);
